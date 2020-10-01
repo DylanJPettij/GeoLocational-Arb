@@ -54,4 +54,14 @@ def main():
     sorted_df = mergeData()
     Cost, PurchasingPower =FixData(sorted_df)
     Charting(Cost, PurchasingPower)
+    #you can replace the cities in your code with other cities from the cost of living index file provided for other comparisons
+    
+    work = PurchasingPower.loc[PurchasingPower['City'] =='Dallas, TX, United States']
+    live = Cost.loc[Cost['City'] =='Medellin, Colombia']
+    Arbitrage = [live['Cost of Living Plus Rent Index'][0]-work['Cost of Living Plus Rent Index'][1],work['Local Purchasing Power Index'][1]-live['Local Purchasing Power Index'][0]]
+    print(work['Local Purchasing Power Index'][1])
+    print(live['Local Purchasing Power Index'][0])
+    data = {'Cost Of Living Arbitrage':  round(Arbitrage[0]),
+        'Income Arbitrage': round(Arbitrage[1])}
+    print(data)
 main()
